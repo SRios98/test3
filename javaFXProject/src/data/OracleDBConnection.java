@@ -87,8 +87,7 @@ public class OracleDBConnection {
     }
     
     
-    
-    // Method to add books from the database
+
     public void addBooks() throws SQLException {
         ArrayList<Book> books = new ArrayList<>();
         String query = "INSERT INTO Book (Title, Author, ISBN, Year, Available");
