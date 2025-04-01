@@ -87,6 +87,34 @@ public class OracleDBConnection {
     }
     
     
+    
+    // Method to add books from the database
+    public void addBooks() throws SQLException {
+        ArrayList<Book> books = new ArrayList<>();
+        String query = "INSERT INTO Book (Title, Author, ISBN, Year, Available");
+        
+        try (Connection conn = DriverManager.getConnection(getConnectionString(), username, password);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+            
+            while (rs.next()) {
+                String title = rs.getString("Title");
+                String author = rs.getString("Author");
+                long isbn = rs.getLong("ISBN");
+                int year = rs.getInt("Year");
+                boolean available = rs.getBoolean("Available");
+                
+                Book book = new Book(title, author, isbn, year, available);
+                books.add(book);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new SQLException("Error fetching books from the database.");
+        }
+
+
+    }
+    
     // Method to fetch users from the database
     public ArrayList<User> fetchUsers() throws SQLException {
         ArrayList<User> users = new ArrayList<>();

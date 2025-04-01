@@ -28,10 +28,8 @@ public class InicioSesionController {
     
     private UserDataManager userManager = UserDataManager.getInstance();
     
-    @FXML
-    public void initialize() {
-    	userManager.getUsers();
-    }
+
+
     
     @FXML
     void IngresoUsuario(ActionEvent event) {
